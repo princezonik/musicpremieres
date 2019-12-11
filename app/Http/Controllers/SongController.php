@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Album;
 use App\Song;
+use Session; 
 use Intervention\Image\Facades\Image;
 use Illuminate\Http\Request;
 
@@ -21,12 +22,22 @@ class SongController extends Controller
    }
 
     public function store(Song $songs){
-        $songs = Song::create($this->validateRequest());
-        //$albums = Album::create($this->validateRequest());
-        $this->storeImage($songs);
 
+       if ('category' == 'album'){
+           $songs = Album::create($this->validateAlbumRequest());
+           $this->storeImage($songs);
+       }else if('category' == 'single'){
+           $songs = Song::create($this->validateRequest());
+           $this->storeImage($songs);
+       }else {
+          dd($songs);
+       }
+
+       Session::flash('Success', 'Item added successfully'); 
+        
         return redirect('admin/uploads');
     }
+    
 
     /**
      * Display the specified resource.
@@ -74,6 +85,7 @@ class SongController extends Controller
     }
 
     private function validateRequest(){
+
         return \request()->validate([
             'artist_name' => 'required | min: 3',
             'song_name' => 'required| min: 3',
@@ -81,17 +93,32 @@ class SongController extends Controller
             'category' => 'required',
             'label' => 'required| min: 3',
             'download_link' => 'required',
+            'download_link_two' => 'required',
+            'download_link_three' => 'required',
             'track_list' => 'required',
             'release_date' => 'required | date',
             'image' => 'file | image | max: 7000'
+
+
         ]);
     }
 
-//    private function validateAlbumRequest(){
-//        return \request()->validate([
-//            'artist_name' => 'required | min'
-//        ]);
-//    }
+   private function validateAlbumRequest(){
+       return \request()->validate([
+           'artist_name' => 'required | min: 3',
+           'album_name' => 'required',
+           'genre' => 'required',
+           'category' => 'required',
+           'label' => 'required| min: 3',
+           'download_link' => 'required',
+           'download_link_two' => 'sometimes',
+           'download_link_three' => 'sometimes',
+           'track_list' => 'required',
+           'release_date' => 'required | date',
+           'image' => 'file | image | max: 7000'
+
+       ]);
+   }
 
     public function storeImage($songs){
         if(request()->has('image')){
@@ -99,7 +126,7 @@ class SongController extends Controller
                 'image' => request()->image->store('uploads', 'public'),
             ]);
 
-            $image = Image::make(public_path('storage/'. $songs->image))->crop(300,300);
+            $image = Image::make(public_path('storage/'. $songs->image))->fit(300,300);
             $image->save();
         }
     }

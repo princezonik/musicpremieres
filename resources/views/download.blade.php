@@ -3,29 +3,29 @@
 @section('content')
 
 <div class="container">
-{{--    @if($song->image)--}}
-        <div class="col-12">
+        {{--    @if($song->image)--}}
+        <div class="page-container col-12">
             <div class=" artwork">
                 <img src="{{asset('storage/' .$song->image)}}" alt="" class="thumbnail">
-                <p>New</p>
-                <p>{{$song->song_name}}</p>
-                <p>{{$song->artist_name}}</p>
 
+                <span class="artwork-title">
+                    <p>New</p>
+                    <p>{{$song->song_name}}</p>
+                    <p>{{$song->artist_name}}</p>
+                </span>
             </div>
-{{--            <div class="artwork-title">--}}
-{{--                --}}
-{{--            </div>--}}
+           
             <div class="artwork-details">
 
                 <p>Genre: {{$song->category}} </p>
                 <p>Released: {{$song->release_date}}</p>
                 <p>Label: {{$song->label}}</p>
             </div>
-        </div>
-{{--    @endif--}}
+       
+            {{--    @endif--}}
+       
 
-
-    <section id="tabs" class="project-tab">
+    <section id="tabs" class="links-tab">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -53,14 +53,14 @@
                                         <td><a target="_blank" href="{{$song->download_link}}">{{$song->download_link}}</a></td>
                                     </tr>
                                     <tr>
-                                        <td><a target="_blank" href="{{$song->download_link}}">Download Link 2</a></td>
+                                        <td><a target="_blank" href="{{$song->download_link_two}}">Download Link 2</a></td>
 
-                                        <td><a target="_blank" href="{{$song->download_link}}">{{$song->download_link}}</a></td>
+                                        <td><a target="_blank" href="{{$song->download_link_two}}">{{$song->download_link_two}}</a></td>
                                     </tr>
                                     <tr>
-                                        <td><a target="_blank" href="{{$song->download_link}}">Download Link 3</a></td>
+                                        <td><a target="_blank" href="{{$song->download_link_three}}">Download Link 3</a></td>
 
-                                        <td><a target="_blank" href="{{$song->download_link}}">{{$song->download_link}}</a></td>
+                                        <td><a target="_blank" href="{{$song->download_link_three}}">{{$song->download_link_three}}</a></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -80,7 +80,7 @@
                         <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
                             <table class="table" cellspacing="0">
 
-                                {{--  --}}
+                                {{-- 
                             </table>
                         </div>
                     </div>
@@ -89,38 +89,27 @@
         </div>
     </section>
 
+</div>
+
     <br>
 
 
 </div>
 
-<div class="songs-by">
-        <div class="container">
-            <div class="artist-songs">
-{{--                <div class="row">--}}
-{{--                    <div class="new-songs col-10 ">--}}
-{{--                        <p ><strong>New songs</strong></p>--}}
-{{--                        @foreach($songs as $song)--}}
-{{--                            <div class="songs-container">--}}
-{{--                                <div> <a class="" href="{{ route('download', [$song->id]) }}"> <img class=" img-fluid rounded float-left" src="{{asset('storage/' .$song->image)}}" alt=""></a></div>--}}
-{{--                                <div class="songs-container-details">--}}
-{{--                                    <a class="" href=""><p>{{$song->song_name}}</p></a>--}}
-{{--                                    <a class="" href=""><p>{{$song->artist_name}}</p> </a>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        @endforeach--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-            </div>
-            <div class="artist-albums">
-                    <p> Albums BY: {{$song->artist_name}} </p>
-            </div>
-            <div class="artist-videos">
-                    <p> Videos BY: {{$song->artist_name}} </p>
-            </div>
+    {{-- <div class="songs-by">
+            <div class="container">
+                <div class="artist-songs">
+
+                </div>
+                <div class="artist-albums">
+                        <p> Albums BY: {{$song->artist_name}} </p>
+                </div>
+                <div class="artist-videos">
+                        <p> Videos BY: {{$song->artist_name}} </p>
+                </div>
 
 
-        </div>
+            </div>
 
-    </div>
+        </div> --}}
 @endsection

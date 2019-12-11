@@ -19,8 +19,11 @@ class CreateAlbumsTable extends Migration
             $table->string('artist_name');
             $table->string('album_name');
             $table->string('genre');
+            $table->string('category');
             $table->string('label');
             $table->string('download_link');
+            $table->string('download_link_two');
+            $table->string('download_link_three');
             $table->text('track_list');
             $table->timestamp('release_date');
             $table->string('image');

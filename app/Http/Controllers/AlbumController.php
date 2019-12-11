@@ -11,9 +11,10 @@ class AlbumController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(Album $albums){
+        $albums = Album::all();
+        $this->storeImage($albums);
+         return view('admin.uploads', compact('albums'));
     }
 
     /**
@@ -21,21 +22,25 @@ class AlbumController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function create(Album $albums){
+        $albums = new Song();
+        return view('admin.uploads', compact('albums'));
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+ 
+     public function store(Song $albums){
+ 
+        if ('category' == 'album'){
+            $albums = Album::create($this->validateAlbumRequest());
+            $this->storeImage($albums);
+        }else if('category' == 'single'){
+            $albums = Song::create($this->validateRequest());
+            $this->storeImage($albums);
+        }else {
+           dd($albums);
+        }
+         
+         return redirect('admin/uploads');
+     }
 
     /**
      * Display the specified resource.
@@ -43,9 +48,9 @@ class AlbumController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Song $songs)
     {
-        //
+        return view('adminDash', compact('musics'));
     }
 
     /**
@@ -80,5 +85,52 @@ class AlbumController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    private function validateRequest(){
+
+        return \request()->validate([
+            'artist_name' => 'required | min: 3',
+            'song_name' => 'required| min: 3',
+            'genre' => 'required| min: 3',
+            'category' => 'required',
+            'label' => 'required| min: 3',
+            'download_link' => 'required',
+            'download_link_two' => 'required',
+            'download_link_three' => 'required',
+            'track_list' => 'required',
+            'release_date' => 'required | date',
+            'image' => 'file | image | max: 7000'
+
+
+        ]);
+    }
+
+   private function validateAlbumRequest(){
+       return \request()->validate([
+           'artist_name' => 'required | min: 3',
+           'album_name' => 'required',
+           'genre' => 'required',
+           'category' => 'required',
+           'label' => 'required| min: 3',
+           'download_link' => 'required',
+           'download_link_two' => 'sometimes',
+           'download_link_three' => 'sometimes',
+           'track_list' => 'required',
+           'release_date' => 'required | date',
+           'image' => 'file | image | max: 7000'
+
+       ]);
+   }
+
+    public function storeImage($albums){
+        if(request()->has('image')){
+            $songs->update([
+                'image' => request()->image->store('uploads', 'public'),
+            ]);
+
+            $image = Image::make(public_path('storage/'. $songs->image))->fit(300,300);
+            $image->save();
+        }
     }
 }

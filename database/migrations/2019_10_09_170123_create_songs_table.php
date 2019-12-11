@@ -22,6 +22,8 @@ class CreateSongsTable extends Migration
             $table->string('label');
             $table->string('image');
             $table->string('download_link');
+            $table->string('download_link_two');
+            $table->string('download_link_three');
             $table->text('track_list');
             $table->timestamp('release_date');
             $table->timestamps();

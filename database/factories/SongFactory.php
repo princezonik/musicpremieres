@@ -13,10 +13,12 @@ $factory->define(App\Song::class, function (Faker $faker) {
        'genre' => $faker->word,
        'category' => $faker->word,
        'label' => $faker->word,
-       'download_link' => $faker->word,
+       'download_link' => $faker->url,
+       'download_link_two' => $faker->url,
+       'download_link_three' => $faker->url,
         'track_list' => $faker->paragraph,
        'release_date' => $faker->date,
-       'image' => $faker->image('public/storage/uploads',300,300, null, false),
+       'image' => $faker->image('storage/public/uploads',300,300, null, false),
     ];
 
   // $filepath = storage_path('storage/');

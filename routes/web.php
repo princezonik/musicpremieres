@@ -19,5 +19,6 @@ Route::model('songs', 'Song');
 Route::get('/', 'IndexController@index')->name('index');
 Route::get('download/{downloads}', 'IndexController@download_page')->name('download');
 Route::resource('/admin/uploads', 'SongController');
+Route::get('/search', 'SearchController@index')->name('search'); 
 //Route::get('/download','IndexController@downloads')->name('downloads');
 //Route::get('/home', 'HomeController@index')->name('home');

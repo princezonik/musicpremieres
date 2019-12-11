@@ -3,70 +3,182 @@
 @include('layouts.partials._indexCarousel')
 
 
+
 @section('content')
-<div class="container">
-  <div class="row">
-    <div class="new-release col-10 ">
-      <p id="follow-us">Follow Us</p>
-      <p><strong>New Release</strong></p>
-            @foreach($albums as $album)
-                <div class="release-container">
-                    <a class="" href="{{ route('download',[$album->id, $album->album_name])}}"><img class=" img-fluid rounded float-left" src="{{asset('storage/' .$album->image)}}" alt=""></a>
-                    <a class="" href="{{ route('download',[$album->id])}}"><p >{{$album->album_name}}</p></a>
-                    <a class="" href="{{ route('download',[$album->id])}}"> <p>{{$album->artist_name}}</p> </a>
-                </div>
-            @endforeach
-    </div>
-  </div>
 
-    <div class="row">
-        <div class="new-songs col-10 ">
-            <p ><strong>New songs</strong></p>
-            @foreach($songs as $song)
-                <div class="songs-container">
-                       <div> <a class="" href="{{ route('download', [$song->id]) }}"> <img class=" img-fluid rounded float-left" src="{{asset('storage/' .$song->image)}}" alt=""></a></div>
-                        <div class="songs-container-details">
-                         <a class="" href=""><p>{{$song->song_name}}</p></a>
-                            <a class="" href=""><p>{{$song->artist_name}}</p> </a>
+    <div class="container">
+        <h4>Follow Us:</h4>
+        <h1 class="category-header">
+            New Releases
+            <span class="see-more"><a href="" title="more">All New Releases &gt; </a></span>
+        </h1>
+        <div class="new-release-wrapper">
+     
+            @foreach ($albums as $album)
+                
+                <div class="album">
+                    <a href="{{ route('download', [$album->id]) }}">
+                        <div class="album-art">
+                            <img src="{{asset('storage/' .$album->image)}}" alt="">
                         </div>
+                        <div class="album-title-wrapper">
+                            <div class="song-title">{{$album->album_name}}</div>
+                            <div class="song-artist">{{$album->artist_name}}</div>
+                        </div>
+                    </a>
                 </div>
             @endforeach
+          
         </div>
-    </div>
-    <section>
-        <div class="row">
-            <div class="col-4"></div>
-            <p>somehtin</p>
+
+        <h1 class="category-header">
+                New songs
+                <span class="see-more"><a href="" title="more">All New Songs &gt; </a></span>
+            </h1> 
+        <div class="new-songs-wrapper">   
+            
+            
+            <div class="column">
+                @foreach ($songs as $song)
+                    
+                        <a href="{{ route('download', [$song->id]) }}">
+                            <div class="song">
+                                <div class="song-art">
+                                    
+                                    <img src="{{asset('storage/' .$song->image)}}" alt="">
+                                    
+                                </div>
+                               
+                                <div class="song-title-wrapper">
+                                    <div class="song-title">{{$song->song_name}}</div>
+                                    <div class="song-artist">{{$song->artist_name}}</div>
+                                </div>
+                               
+                            </div>
+                        </a>
+                     
+                @endforeach
+            </div> 
+
+            <div class="column">
+                @foreach ($songTwos as $songTwo)
+                    
+                        <a href="{{ route('download', [$songTwo->id]) }}">
+                            <div class="song">
+                                <div class="song-art">
+                                    <img src="{{asset('storage/' .$songTwo->image)}}" alt="">
+                                </div>
+                                <div class="song-title-wrapper">
+                                    <div class="song-title">{{$songTwo->song_name}}</div>
+                                    <div class="song-artist">{{$songTwo->artist_name}}</div>
+                                </div>
+                            </div>
+                        </a>
+                        
+                @endforeach
+            </div> 
+            <div class="column">
+                @foreach ($songThrees as $songThree)
+                    
+                        <a href="{{ route('download', [$songThree->id]) }}">
+                            <div class="song">
+                                <div class="song-art">
+                                    <img src="{{asset('storage/' .$songThree->image)}}" alt="">
+                                </div>
+                                <div class="song-title-wrapper">
+                                    <div class="song-title">{{$songThree->song_name}}</div>
+                                    <div class="song-artist">{{$songThree->artist_name}}</div>
+                                </div>
+                            </div>
+                           
+                        </a> 
+                @endforeach
+            </div> 
         </div>
-    </section>
+        <h1 class="category-header">
+                New Videos
+                <span class="see-more"><a href="" title="more">All New Videos &gt; </a></span>
+            </h1>
+        <div class="new-video-wrapper">
+     
+                @foreach ($albums as $album)
+                   
+                    <div class="album">
+                        <a href="{{ route('download', [$album->id]) }}">
+                            <div class="album-art">
+                                <img src="{{asset('storage/' .$album->image)}}" alt="">
+                            </div>
+                        </a>
+                        
+                            <div class="album-title-wrapper">
+                                <a href="{{ route('download', [$album->id]) }}">
+                                <div class="song-title">{{$album->album_name}}</div>
+                                </a>
+                                <a href="{{ route('download', [$album->id]) }}">
+                                <div class="song-artist">{{$album->artist_name}}</div>
+                                </a>
+                            </div>
+                    </div>
+                @endforeach
 
-{{--    <div class="row">--}}
-{{--        <div class="upcoming col-10">--}}
-{{--            <p><strong>Upcoming</strong></p>--}}
-{{--            @foreach($albums as $album)--}}
-{{--                <div class="upcoming-container">--}}
-{{--                    <a class="" href="{{route('download',[$album->image])}}"> <img class=" img-fluid rounded float-left" src="{{asset('storage/' .$album->image)}}" alt=""></a>--}}
-{{--                    <a class="" href="{{route('download',[$album->album_name])}}"><p >{{$album->album_name}}</p></a>--}}
-{{--                    <a class="" href="{{route('download',[$album->album_name])}}"> <p>{{$album->artist_name}}</p> </a>--}}
-{{--                </div>--}}
-{{--            @endforeach--}}
-{{--        </div>--}}
-{{--    </div>--}}
+               
+          
+        </div>
+        <aside>
+            <div class="sidebar section" id="sidebar-right">
+                <div class="widget" id="HTML1">
+                    <h2 class="title">Quick Links</h2>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <a href="">New Releases</a>
+                                </td>
+                                <td>
+                                    <a href="">Recently Added</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="">New Songs</a>
+                                </td>
+                                <td>
+                                    <a href="">Top 50 Songs</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="">New Albums</a>
+                                </td>
+                                <td>
+                                    <a href="">Top 50 Albums</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="">New EP</a>
+                                </td>
+                                <td>
+                                    <a href="">Upcoming Albums</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="">All Music Videos</a>
+                                </td>
+                                <td>
+                                    <a href="">ReUploads</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-{{--    <div class="row">--}}
-{{--        <div class="videos col-10">--}}
-{{--            <p><strong>Videos</strong></p>--}}
-{{--            @foreach($albums as $album)--}}
-{{--                <div class="videos-container">--}}
-{{--                    <a class="" href="{{route('download',[$album->image])}}"> <img class=" img-fluid rounded float-left" src="{{asset('storage/' .$album->image)}}" alt=""></a>--}}
-{{--                    <a class="" href="{{route('download',[$album->album_name])}}"><p >{{$album->album_name}}</p></a>--}}
-{{--                    <a class="" href="{{route('download',[$album->album_name])}}"> <p>{{$album->artist_name}}</p> </a>--}}
-{{--                </div>--}}
-{{--            @endforeach--}}
-{{--        </div>--}}
-{{--    </div>--}}
-
-</div>
-
+                </div>
+            </div>
+            <hr />
+            Popular This Week
+        </aside> 
+    </div> <!-- End of Container div -->
+    
 
 @endsection

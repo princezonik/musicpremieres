@@ -10,10 +10,10 @@
         </form>
     </div>
     <div>
-        <form action="{{ route('uploads.store') }}" method="post" enctype="multipart/form-data">
-            @csrf
-            @include('albumform')
-            <button type="submit" class="btn btn-primary"> Add Music </button>
-        </form>
+{{--        <form action="{{ route('uploads.store') }}" method="post" enctype="multipart/form-data">--}}
+{{--            @csrf--}}
+{{--            @include('albumform')--}}
+{{--            <button type="submit" class="btn btn-primary"> Add Music </button>--}}
+{{--        </form>--}}
     </div>
 @endsection

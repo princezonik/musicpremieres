@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <a class="navbar-brand" href="#"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -8,14 +8,29 @@
         <li class="nav-item active">
           <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Genre</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Top 50 Naija</a>
-        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Genre</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">Alternative</a>
+              <a class="dropdown-item" href="#">Afro-Pop</a>
+              <a class="dropdown-item" href="#">Bass</a>
+              <a class="dropdown-item" href="#">Dance</a>
+              <a class="dropdown-item" href="#">Folk</a>
+              <a class="dropdown-item" href="#">Indie</a>
+              <a class="dropdown-item" href="#">Hip-Hop</a>
+              <a class="dropdown-item" href="#">Pop</a>
+              <a class="dropdown-item" href="#">Rock</a>
+              <a class="dropdown-item" href="#">Dance</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Separated link</a>
+            </div>
+          </li>
+
+          <li class="nav-item">
+              <a class="nav-link" href="#">Top 50 Naija</a>
+            </li>
       </ul>
-      <form class="form-inline mt-2 mt-md-0" action="{{--route('download')--}}">
+      <form class="form-inline mt-2 mt-md-0" action="{{--route('download')--}}" method="GET">
         <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form>

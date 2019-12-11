@@ -16,9 +16,14 @@
     <div class="form-group">
         <label for="genre">Genre</label>
         <select class="form-control" name="genre" id="genre">
-            @foreach($songs as $song)
-                <option>{{$song->genre}}</option>
-            @endforeach
+            <option>Single</option>
+            <option value="hip-hop">Hip-Hop</option>
+            <option value="randb">R&B</option>
+            <option value="alternative">Alternative</option>
+            <option value="folk">Folk</option>
+            <option value="dance">Dance</option>
+            <option value="indie">Indie</option>
+            <option value="rock">Rock</option>
         </select>
     </div>
 
@@ -26,10 +31,11 @@
         <label for="category">Category</label>
 
         <select class="form-control" name="category" id="category">
-            @foreach($songs as $song)
-                <option>{{$song->category}}</option>
-            @endforeach
-         </select>
+            <option value="" name="" selected disabled>Select Music Category</option>
+            <option value="1" name="single">Single</option>
+            <option value="0" name="album">Album</option>
+            <option value="ep" name="ep">EP</option>
+        </select>
     </div>
 
     <div class="form-group">
@@ -43,8 +49,18 @@
     </div>
 
     <div class="form-group">
+        <label for="recordLabel">Download Link 2 </label>
+        <input type="text" class="form-control"  id="download_link_two" name="download_link_two" placeholder="Enter Download Link" required>
+    </div>
+
+    <div class="form-group">
+        <label for="recordLabel">Download Link 3</label>
+        <input type="text" class="form-control"  id="download_link_three" name="download_link_three" placeholder="Enter Download Link" required>
+    </div>
+
+    <div class="form-group">
         <label for="trackList">Track List</label>
-        <textarea class="form-control rounded-0" id="track_list" name="track_list" rows="3"></textarea
+        <textarea class="form-control rounded-0" id="track_list" name="track_list" rows="3"></textarea>
     </div>
 
     <div class="form-group">
